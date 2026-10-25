@@ -2,6 +2,7 @@ from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, EmailStr, Field
 
+
 class UserBase(BaseModel):
     username: str = Field(min_length=1, max_length=50)
     email: EmailStr = Field(max_length=120)
@@ -22,6 +23,10 @@ class PostBase(BaseModel):
 
 class PostCreate(PostBase):
     user_id: int # TEMPORARY
+
+class PostUpdate(BaseModel):
+    title: str | None = Field(default=None, min_length=1, max_length=100)
+    content: str | None = Field(default=None, min_length=1)
 
 class PostResponse(PostBase):
     model_config = ConfigDict(from_attributes=True)
