@@ -20,7 +20,9 @@ class User(Base):
         default=None,
     )
 
-    posts: Mapped[list[Post]] = relationship(back_populates="author") # Forward Reference to the Post class, which is defined later in the file. This allows SQLAlchemy to establish a relationship between the User and Post models, enabling easy access to a user's posts through the 'posts' attribute.
+    posts: Mapped[list[Post]] = relationship(back_populates="author", cascade="all, delete-orphan") # Forward Reference to the Post class, which is defined later in the file. This allows SQLAlchemy to establish a relationship between the User and Post models, enabling easy access to a user's posts through the 'posts' attribute.
+    # "all, delete-orphan" tells SQLAlchemy that when a user is deleted, it should delete all of their posts too
+    # Use this with CAUTION - It is a poweful feature
 
     @property
     def image_path(self) -> str:
