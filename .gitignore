@@ -11,3 +11,6 @@ wheels/
 
 # Database
 blog.db
+
+# Media
+media/profile_pics/
