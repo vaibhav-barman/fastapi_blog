@@ -26,7 +26,7 @@ class UserUpdate(BaseModel):
     email: EmailStr | None = Field(default=None, max_length=120)
     image_file: str | None = Field(default=None, min_length=1, max_length=200)
 
-class TokenSchema(BaseModel):
+class Token(BaseModel):
     access_token: str
     token_type: str
 
