@@ -14,3 +14,7 @@ blog.db
 
 # Media
 media/profile_pics/
+media/
+
+# Cache
+.DS_Store
