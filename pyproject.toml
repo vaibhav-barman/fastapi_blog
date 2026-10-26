@@ -1,7 +1,7 @@
 [project]
-name = "vaibhav-blog"
+name = "fastapi-blog"
 version = "0.1.0"
-description = "Add your description here"
+description = "A blog application built with FastAPI"
 readme = "README.md"
 authors = [
     { name = "Vaibhav", email = "vaibhavbarman2609@gmail.com" }
