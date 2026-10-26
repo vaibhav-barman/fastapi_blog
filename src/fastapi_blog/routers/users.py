@@ -7,16 +7,15 @@ from sqlalchemy import func, select
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
-from auth import (
+from .. import models
+from ..auth import (
     create_access_token,
     hash_password,
     oauth2_scheme,
     verify_access_token,
     verify_password,
 )
-from config import settings
-
-from .. import models
+from ..config import settings
 from ..database import get_db
 from ..schemas import (
     PostResponse,

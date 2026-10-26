@@ -4,7 +4,7 @@ import jwt
 from fastapi.security import OAuth2PasswordBearer
 from pwdlib import PasswordHash
 
-from config import settings
+from .config import settings
 
 password_hash = PasswordHash.recommended() # This creates a Password Hasher with Argon2 with the recommended settings
 
