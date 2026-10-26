@@ -4,7 +4,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 
 class Settings(BaseSettings):
     model_config = SettingsConfigDict(
-        env_file=".env",
+        env_file=".env", # This is relative to where our application is run from
         env_file_encoding="utf-8",
     )
 

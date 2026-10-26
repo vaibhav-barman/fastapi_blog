@@ -16,5 +16,20 @@ blog.db
 media/profile_pics/
 media/
 
-# Local 
+# macOS - General 
 .DS_Store
+.AppleDouble
+.LSOverride
+
+# .env
+.env
+
+# Database files
+*.sqlite3
+*.db
+
+# Icon must end with two \r
+Icon
+
+# Thumbnails
+._*
