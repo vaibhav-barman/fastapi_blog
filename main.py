@@ -25,9 +25,17 @@ from schemas import (
     UserUpdate,
 )
 
-Base.metadata.create_all(bind=engine) # This is idempotent, meaning it will only create the tables if they do not already exist. It will not modify existing tables or data. This is useful for ensuring that the database schema is set up correctly without risking data loss or corruption.
 
-app = FastAPI()
+@asynccontextmanager
+async def lifespan(_app: FastAPI):
+    # Startup
+    async with engine.begin() as conn:
+        await conn.run_sync(Base.metadata.create_all)
+    yield
+    # Shutdown
+    await engine.dispose()
+
+app = FastAPI(lifespan=lifespan)
 
 app.mount("/static", StaticFiles(directory="static"), name="static") # app mounts the static files directory to serve static files like CSS, JS, images, etc.
 
