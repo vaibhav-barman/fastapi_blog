@@ -1,7 +1,7 @@
+from pathlib import Path
+
 from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker, create_async_engine
 from sqlalchemy.orm import DeclarativeBase
-import os
-from pathlib import Path
 
 # 1. Dynamically calculate the absolute path to the project root folder
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
