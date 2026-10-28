@@ -173,8 +173,6 @@ async def update_user(
         user.username = user_update.username
     if user_update.email is not None:
         user.email = user_update.email.lower()
-    if user_update.image_file is not None:
-        user.image_file = user_update.image_file
 
     await db.commit()
     await db.refresh(user)
@@ -197,8 +195,13 @@ async def delete_user(user_id: int, current_user: CurrentUser, db: Annotated[Asy
             detail="User not found",
         )
 
+    old_filename = user.image_file
+
     await db.delete(user)
     await db.commit()
+
+    if old_filename:
+        delete_profile_image(old_filename)
 
 @router.patch("/{user_id}/picture", response_model=UserPrivate)
 async def upload_profile_picture(
