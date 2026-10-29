@@ -47,3 +47,10 @@ class PostResponse(PostBase):
     user_id: int
     date_posted: datetime
     author: UserPublic
+
+class PaginatedPostsResponse(BaseModel):
+    posts: list[PostResponse]
+    total: int
+    skip: int # Offset
+    limit: int # How many posts are requested
+    has_more: bool # Tells if we have more posts - Makes frontend simpler!
