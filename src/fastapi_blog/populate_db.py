@@ -10,7 +10,8 @@ from .database import AsyncSessionLocal, engine
 from .image_utils import PROFILE_PICS_DIR
 from .main import app
 
-POPULATE_IMAGES_DIR = Path("populate_images")
+# Calculates the path relative to this script's location (up 3 directory levels)
+POPULATE_IMAGES_DIR = Path(__file__).resolve().parent.parent.parent / "populate_images"
 
 USERS = [
     {
