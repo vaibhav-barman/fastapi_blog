@@ -5,13 +5,12 @@ from pathlib import Path
 import httpx
 from sqlalchemy import delete, select, update
 
-from . import models
-from .database import AsyncSessionLocal, engine
-from .image_utils import PROFILE_PICS_DIR
-from .main import app
+from fastapi_blog import models
+from fastapi_blog.database import AsyncSessionLocal, engine
+from fastapi_blog.image_utils import PROFILE_PICS_DIR
+from fastapi_blog.main import app
 
-# Calculates the path relative to this script's location (up 3 directory levels)
-POPULATE_IMAGES_DIR = Path(__file__).resolve().parent.parent.parent / "populate_images"
+POPULATE_IMAGES_DIR = Path("populate_images")
 
 USERS = [
     {
@@ -284,11 +283,6 @@ async def update_post_dates() -> None:
 
 
 async def populate() -> None:
-    # --- ADDED: Create missing tables before clearing/populating data ---
-    print("Initializing database tables...")
-    async with engine.begin() as conn:
-        await conn.run_sync(models.Base.metadata.create_all)
-    print("Database schema verified.")
     transport = httpx.ASGITransport(app=app)
 
     async with httpx.AsyncClient(
