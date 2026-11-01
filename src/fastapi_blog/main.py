@@ -37,12 +37,6 @@ app.mount(
     name="static",
 )
 
-app.mount(
-    "/media",
-    StaticFiles(directory=PROJECT_ROOT / "media"),
-    name="media",
-)
-
 templates = Jinja2Templates(directory=PROJECT_ROOT / "templates")
 
 app.include_router(users.router, prefix="/api/users", tags=["users"])
