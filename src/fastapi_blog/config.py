@@ -8,7 +8,7 @@ class Settings(BaseSettings):
         env_file_encoding="utf-8",
     )
 
-    database_url: str
+    DATABASE_URL: str
 
     secret_key: SecretStr
     algorithm: str = "HS256"
